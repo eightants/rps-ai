@@ -1,0 +1,64 @@
+.select-btn {
+    border-radius: 80px;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 300;
+    color: black;
+    margin: 10px;
+    letter-spacing: 0.8;
+    text-decoration: none;
+    padding: 15px 30px 15px 30px;
+    border: 0px solid black; 
+    background: rgb(230, 230, 230);
+    transition: .2s ease;
+}
+
+.select-btn:hover {
+    background: rgb(201, 201, 201);
+    cursor: pointer;
+}
+
+.player-card {
+    float: left;
+    width: 30%;
+    padding: 20px;
+    border-radius: 20px;
+    margin: 20px 10% 20px 10%;
+    -webkit-box-shadow: 0px 5px 15px 2px rgba(0,0,0,0.3); 
+    box-shadow: 0px 5px 10px 2px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.btn-con {
+    text-align: center;
+}
+
+.card-con {
+    overflow: hidden;
+}
+
+.display-img {
+    max-width: 80%;
+    margin: 60px 40px 60px 40px;
+}
+
+
+/* scoreboard */
+.scoreboard {
+    text-align: center;
+    margin: 30px;
+}
+
+.cat-div {
+    display: inline-block;
+    width: 20%;
+}
+
+.cat-name {
+    color: rgb(61, 61, 61);
+    font-weight: 500;
+}
+
+.score {
+    font-size: 42px;
+}

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Rock, Paper, Scissors</title>
+        <link rel="stylesheet" href="https://eightants.github.io/css/master.css">
+        <link rel="stylesheet" media="only screen and (max-width:900px)" href="https://eightants.github.io/css/smallscreen.css">
+        <link rel="stylesheet" href="./styles.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,300,400,700" rel="stylesheet"> 
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-132344171-1"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-132344171-1');
+        </script>
+    </head>
+    <body>
+        <div class="projects-card">
+            <div class="scoreboard">
+                <div class="cat-div">
+                    <div class="cat-name">YOU</div>
+                    <div class="score">0</div>
+                </div>
+                <div class="cat-div">
+                    <div class="cat-name">TIE</div>
+                    <div class="score">0</div>
+                </div>
+                <div class="cat-div">
+                    <div class="cat-name">AI</div>
+                    <div class="score">0</div>
+                </div>
+            </div>
+            <div class="card-con">
+                <div class="player-card">
+                    <img class="display-img" id="user-img" src="./source.gif">
+                    <div class="btn-con">
+                        <div class="select-btn" id="rock" onClick="selection(this.id)">🗿</div>
+                        <div class="select-btn" id="paper" onClick="selection(this.id)">📃</div>
+                        <div class="select-btn" id="scissors" onClick="selection(this.id)">✂️</div>
+                    </div>
+                </div>
+                <div class="player-card">
+                    <img class="display-img" id="ai-img" src="./source.gif">
+                    <div class="btn-con">
+                        <div class="select-btn">Thinking...</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="project-card">
+            <h1 style="text-align: center">Rock, Paper, Scissors</h1>
+        </div>
+    </body>
+    <script src="./scripts.js"></script>
+</html>
