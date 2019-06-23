@@ -1,3 +1,5 @@
+/* Anthony Teo 2019 */
+
 /* JS nav scrollto */
         var learnMore = document.querySelector("#think").offsetTop;
         var lmLink = document.querySelector("#learn-more-btn");
