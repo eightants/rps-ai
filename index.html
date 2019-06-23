@@ -84,12 +84,13 @@
                 <p>
                     PARIS operates under the assumption that more recent events are more important in a person's decision. It takes the your previous n moves and searches all your moves for instances when you have done the same move pattern. Using that, it predicts your most probably next move and will act accordingly to win. 
                 </p>
-                <p>
-                    This is how your current version of PARIS processes your previous n moves. Hover over the graph for more information. Refresh to get a different version of PARIS. 
-                </p>
+                <p>For example, if you played rock and then scissors, PARIS will search through your move history for previous instances where you played a rock followed by a scissor. It will then look at your next move for each of those instances. Using an algorithm, it will assign probability values to rock, paper and scissors. It will then move to counter your most probable next move. For a 3 move pattern, it does the same with your past 3 moves instead. </p>
                 <div class="chart-con">
                     <canvas id="myChart" aria-label="PARIS thinking diagram" role="img"><p>Your browser does not support the canvas element.</p></canvas>
                 </div>
+                <p>
+                    Above is how your current version of PARIS processes your previous n moves. Hover over the graph for more information. Refresh to get a different version of PARIS. 
+                </p>
                 <p>
                     To help investigate how much weight should be placed on each variable, PARIS needs your help! Play at least 20 rounds with PARIS to send in your game data and help me find the settings to make PARIS a rock, paper, scissors world champion!
                 </p>
