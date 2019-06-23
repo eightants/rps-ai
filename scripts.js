@@ -80,8 +80,8 @@ function allIndexOf(str, toSearch) {
 }
 
 /* function to find all potential next moves and calculate probability */
-/* takes in array of potential next moves, user move history, number of significant occurances */
-function probMove(nextMoveIndexes, userHist, signif) {
+/* takes in array of potential next moves, user move history, number of significant occurances, and how much should recent moves be weighted vs less recent ones */
+function probMove(nextMoveIndexes, userHist, signif, pastWeight, recentWeight) {
     var occur = nextMoveIndexes.length;
     var nextMove = {
         pRock: 0, 
@@ -90,7 +90,7 @@ function probMove(nextMoveIndexes, userHist, signif) {
     };
     for (var i = 0; i < occur; i++) {
         if (occur < signif * 2) {
-            var mWeight = 100 * 1.0 / occur;
+            var mWeight = (pastWeight + recentWeight) * 1.0 / occur;
             /* weight assignment code block */
             if (userHist[nextMoveIndexes[i]] == "r") {
                 nextMove.pRock += mWeight;
@@ -102,7 +102,7 @@ function probMove(nextMoveIndexes, userHist, signif) {
         } else {
             /* if more than significant occurances arg, will count the nonsignificant occurances as only half of the weight total */
             if (i < occur - signif) {
-                var mWeight = 50 * 1.0 / (occur - signif);
+                var mWeight = pastWeight * 1.0 / (occur - signif);
                     /* weight assignment code block */
                     if (userHist[nextMoveIndexes[i]] == "r") {
                         nextMove.pRock += mWeight;
@@ -113,7 +113,7 @@ function probMove(nextMoveIndexes, userHist, signif) {
                     }
             
             } else {
-                var mWeight = 50 * 1.0 / signif;
+                var mWeight = recentWeight * 1.0 / signif;
                     /* weight assignment code block */
                     if (userHist[nextMoveIndexes[i]] == "r") {
                         nextMove.pRock += mWeight;
@@ -133,12 +133,29 @@ function getRandomInt(max) {
   return Math.floor(Math.random() * Math.floor(max));
 }
 
+/* multiplying move object */
+function moveMult(moveObj, num) {
+    moveObj.pPaper *= num;
+    moveObj.pScissors *= num;
+    moveObj.pRock *= num;
+}
+
+/* adding move object */
+function moveAdd(moveObj1, moveObj2) {
+    moveObj1.pPaper += moveObj2.pPaper;
+    moveObj1.pScissors += moveObj2.pScissors;
+    moveObj1.pRock += moveObj2.pRock;
+}
+
+
+/* amount of weight given to analysis of two past moves and other previous moves */
+var twoWeight = 10;
+var threeWeight = 0;
+var totalWeight = twoWeight + threeWeight;
+
 /* the brain AI thinking algorithm */
 function AiThink(userHist) {
     const round = userHist.length;
-    /* amount of weight given to analysis of two past moves and previous move */
-    var twoWeight = 100;
-    var oneWeight = 0;
 
     if (round < 3) {
         console.log("learning...");
@@ -160,7 +177,16 @@ function AiThink(userHist) {
         var twoNextMove = allIndexOf(popHist, twoHist);
         console.log(twoNextMove);
         /* gets nextMove object */
-        twoUserMove = probMove(twoNextMove, userHist, 5);
+        twoUserMove = probMove(twoNextMove, userHist, 5, 5, 5);
+        /* looking at past three moves as a pattern */
+        const threeHist = userHist.slice(round - 3, round);
+        const poppopHist= userHist.slice(0, round - 2);
+        var threeNextMove = allIndexOf(poppopHist, threeHist);
+        threeUserMove = probMove(threeNextMove, userHist, 3, 5, 5);
+        /* total weight of each number of moves */
+        moveMult(twoUserMove, twoWeight / totalWeight);
+        moveMult(threeUserMove, threeWeight / totalWeight);
+        moveAdd(twoUserMove, threeUserMove);
         console.log("paper", twoUserMove.pPaper);
         console.log("rock", twoUserMove.pRock);
         console.log("scissors", twoUserMove.pScissors);
@@ -187,3 +213,73 @@ function AiThink(userHist) {
 
 }
 
+/* plots chartjs graph */
+var ctx = document.getElementById('myChart');
+/* var Chart = require('chart.js'); */
+var myChart = new Chart(ctx, {
+    type: 'horizontalBar',
+    data: {
+        labels: ['Weight Placed (%)'],
+        datasets: [{
+            label: 'Past 2 Moves',
+            data: [twoWeight * 100 / totalWeight],
+            backgroundColor:
+                'rgba(255, 99, 132, 0.2)',
+            borderColor:
+                'rgba(255, 99, 132, 1)',
+            borderWidth: 1}, {
+            /* next */
+            label: 'Past 3 Moves',
+            data: [threeWeight * 100 / totalWeight],
+            backgroundColor: 
+                'rgba(54, 162, 235, 0.2)',
+            borderColor: 
+                'rgba(54, 162, 235, 1)',
+            borderWidth: 1
+        }]
+    },
+    options: {
+        title: {
+            text: "Weight of Previous n Moves",
+            fontFamily: "'Open Sans', 'sans-serif'",
+            fontSize: 12, 
+            position: "bottom",
+            display: true,
+        }, 
+        responsive: true,
+        aspectRatio: 5,
+        scales: {
+            xAxes: [{
+                stacked: true,
+                ticks: {
+                    beginAtZero: true
+                }
+            }],
+            yAxes: [{
+                stacked: true,
+                ticks: {
+                    display: false,
+                    beginAtZero: true
+                }
+            }]
+        }, 
+        legend: {
+            display: false,
+        }
+    } 
+});
+
+/* making graph labels show up on mobile */
+function resGraph() {
+    var devWidth = window.innerWidth;
+    if(devWidth <= 900) {
+        window.myChart.options.legend.display=true;
+        window.myChart.options.maintainAspectRatio=false;
+    }
+    else {
+        window.myChart.options.legend.display=false;
+        window.myChart.options.maintainAspectRatio=true;
+    }
+}
+
+window.onresize = resGraph;
