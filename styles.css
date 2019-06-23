@@ -1,3 +1,7 @@
+html {
+    scroll-behavior: smooth;
+}
+
 .select-btn {
     border-radius: 80px;
     display: inline-block;
@@ -7,15 +11,51 @@
     margin: 10px;
     letter-spacing: 0.8;
     text-decoration: none;
-    padding: 15px 30px 15px 30px;
+    padding: 20px;
     border: 0px solid black; 
-    background: rgb(230, 230, 230);
+    background: rgb(241, 241, 241);
     transition: .2s ease;
 }
 
 .select-btn:hover {
-    background: rgb(201, 201, 201);
+    background: rgb(248, 248, 248);
     cursor: pointer;
+}
+
+.select-btn div {
+    width: 100%;
+    height: 100%;
+    min-width: 40px;
+    min-height: 40px;
+}
+
+#learn-more-btn {
+    font-weight: 500;
+    background: none;
+    color: rgb(42, 42, 42);
+}
+
+#learn-more-btn:hover {
+    color: black;
+    background: none;
+}
+
+#scissors div {
+    background-image: url("./scissors.svg");
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+#paper div {
+    background-image: url("./paper.svg");
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+#rock div {
+    background-image: url("./rock.svg");
+    background-repeat: no-repeat;
+    background-position: center center;
 }
 
 .player-card {
@@ -31,6 +71,13 @@
 
 .btn-con {
     text-align: center;
+}
+
+.mobile-btn {
+    width: 100%;
+    text-align: center;
+    display: none;
+    overflow: hidden;
 }
 
 .card-con {
@@ -61,4 +108,54 @@
 
 .score {
     font-size: 42px;
+}
+
+@media only screen and (max-width: 900px) {
+    .select-btn {
+        border-radius: 80px;
+        width: 20vw;
+        height: 20vw;
+        max-width: 100px;
+        max-height: 100px;
+        padding: 20px; 
+    }
+
+    .select-btn div {
+        min-width: 20px;
+        min-height: 20px;
+    }
+
+    .player-card {
+        width: 40%;
+        padding: 0px;
+        margin: 20px 5% 20px 5%;
+        /* -webkit-box-shadow: 0px 5px 15px 2px rgba(0,0,0,0.3); 
+        box-shadow: 0px 5px 10px 2px rgba(0,0,0,0.1); */
+        text-align: center;
+    }
+
+    .display-img {
+        width: 100%;
+        padding: 40px 20px 40px 20px;
+    }
+
+    .mobile-btn {
+        display: inline-block;
+    }
+
+    #user-card {
+        float: bottom;
+    }
+
+    #ai-card {
+        float: top;
+    }
+
+    .cat-div {
+        width: 30%;
+    }
+
+    .btn-con {
+        display: none;
+    }
 }

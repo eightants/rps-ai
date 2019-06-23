@@ -34,24 +34,41 @@
                 </div>
             </div>
             <div class="card-con">
-                <div class="player-card">
+                <div class="player-card" id="user-card">
                     <img class="display-img" id="user-img" src="./source.gif">
                     <div class="btn-con">
-                        <div class="select-btn" id="rock" onClick="selection(this.id)">🗿</div>
-                        <div class="select-btn" id="paper" onClick="selection(this.id)">📃</div>
-                        <div class="select-btn" id="scissors" onClick="selection(this.id)">✂️</div>
+                        <div class="select-btn" id="rock" onClick="selection(this.id)"><div></div></div>
+                        <div class="select-btn" id="paper" onClick="selection(this.id)"><div></div></div>
+                        <div class="select-btn" id="scissors" onClick="selection(this.id)"><div></div></div>
                     </div>
                 </div>
-                <div class="player-card">
+                <div class="player-card" id="ai-card">
                     <img class="display-img" id="ai-img" src="./source.gif">
                     <div class="btn-con">
-                        <div class="select-btn">Thinking...</div>
+                        <div class="select-btn" id="learn-more-btn"><div>Learn more about how I think...</div></div>
                     </div>
                 </div>
             </div>
+            <div class="mobile-btn">
+                    <div class="select-btn" id="rock" onClick="selection(this.id)"><div></div></div>
+                    <div class="select-btn" id="paper" onClick="selection(this.id)"><div></div></div>
+                    <div class="select-btn" id="scissors" onClick="selection(this.id)"><div></div></div>
+            </div>
         </div>
-        <div class="project-card">
-            <h1 style="text-align: center">About PARIS</h1>
+        <div class="projects-card">
+            <div class="post-inner">
+                <h1>About PARIS</h1>
+                <p>
+                    In the past, you have probably settled an argument or called dibs with a game of rock paper scissors. 
+                    After all, it is a fair game where everyone has the same chances to win, right? That would be true 
+                    in an ideal world. But in reality, everyone is different. A person's behavior can have quite an impact 
+                    on their decision strategy. 
+                </p>
+                <p>
+                    PARIS is an AI that demonstrates the adaptability of simple algorithms. It learns to identify patterns in a person's previous decisions and predicts future behavior. PARIS operates under the assumption that more recent events are more important in a person's decision. It aims to find out the number of previous moves that should be considered for the best behavior prediction. 
+                </p>
+                <h1 id="think">How PARIS Thinks</h1>
+            </div>
         </div>
     </body>
     <script src="./scripts.js"></script>

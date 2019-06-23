@@ -1,3 +1,11 @@
+/* JS nav scrollto */
+        var learnMore = document.querySelector("#think").offsetTop;
+        var lmLink = document.querySelector("#learn-more-btn");
+        lmLink.addEventListener("click", function(event) {
+            event.preventDefault();
+            window.scrollTo(0, learnMore);
+        });
+
 /* important elements */
 const rock = document.querySelector("#rock");
 const paper = document.querySelector("#paper");
