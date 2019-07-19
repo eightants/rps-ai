@@ -26,8 +26,22 @@ var userScore = 0;
 var aiScore = 0;
 var tieScore = 0;
 
+/* checks keypress for selection function trigger too */
+document.addEventListener('keydown', function(event) {
+    const key = event.key; // "a", "1", "Shift", etc.
+    if (key == "1") {
+        selection("rock");
+    } else if (key == "2") {
+        selection("paper");
+    } else if (key == "3") {
+        selection("scissors");
+    }
+});
+
 /* main function that takes userChoice and updates images and receives AI response */
 function selection(userChoice) {
+        document.querySelector("#instructions").style.display = "none";
+        userImg.style.opacity = "1";
         var strUserChoice = ""
         /* ai predicts next move */
         var aiChoice = AiThink(userHist);
@@ -151,9 +165,9 @@ function moveAdd(moveObj1, moveObj2) {
 
 
 /* amount of weight given to analysis of two past moves and other previous moves */
-var twoWeight = 10;
-var threeWeight = 0;
-var totalWeight = twoWeight + threeWeight;
+var totalWeight = 10;
+var twoWeight = getRandomInt(totalWeight);
+var threeWeight = totalWeight - twoWeight;
 
 /* the brain AI thinking algorithm */
 function AiThink(userHist) {
